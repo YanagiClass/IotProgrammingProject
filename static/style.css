@@ -1,0 +1,18 @@
+#Container {
+  flex-direction: column;
+}
+#box1 {
+  background-color: blue;
+  text-align: center;
+}
+#box2 {
+  background-color: gray;
+  text-align: center;
+  height: 500px;
+  width: 500px;
+  margin: auto;
+}
+#box3 {
+  background-color: gainsboro;
+  height: 300px;
+}

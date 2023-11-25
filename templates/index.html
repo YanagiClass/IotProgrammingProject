@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Pet Feeder</title>
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+</head>
+<body>
+	<h1>Pet Feeder</h1>
+	<img src="{{ url_for('video_feed') }}">
+	<br>
+	<br>
+	<button>Feed</button>
+	<audio id="bellSound" src="../static/bell.mp3" preload="auto"></audio>
+	<script>
+		const socket = io();
+		socket.on("ring_bell", (data) => {
+			console.log(data.message);
+			document.getElementById("bellSound").play();
+		  });
+
+
+		$( 'button' ).click(function() {
+			$.get( 'feed')
+			.done(function( data ) {
+				if(data == '1'){
+					alert('Success!');
+				}else{
+					alert('Fail!');
+				}
+			});
+		});
+
+	</script>
+</body>
+</html>
