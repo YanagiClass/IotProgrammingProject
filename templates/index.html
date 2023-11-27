@@ -1,35 +1,49 @@
 <html>
-<head>
-	<title>Pet Feeder</title>
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
-</head>
-<body>
-	<h1>Pet Feeder</h1>
-	<img src="{{ url_for('video_feed') }}">
-	<br>
-	<br>
-	<button>Feed</button>
-	<audio id="bellSound" src="../static/bell.mp3" preload="auto"></audio>
-	<script>
-		const socket = io();
-		socket.on("ring_bell", (data) => {
-			console.log(data.message);
-			document.getElementById("bellSound").play();
-		  });
+  <head>
+    <title>Pet Feeder</title>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <link rel="stylesheet" href="../static/style.css?after" />
+  </head>
+  <body>
+    <div id="Container">
+      <div id="box1">
+        <h1>우리집 현관문lol</h1>
+      </div>
 
+      <div id="box2">
+        <img id="screen" src="{{ url_for('video_feed') }}" />
+        
+        <!-- <img id="screen" src="./kim.jpeg" /> -->
+      </div>
 
-		$( 'button' ).click(function() {
-			$.get( 'feed')
-			.done(function( data ) {
-				if(data == '1'){
-					alert('Success!');
-				}else{
-					alert('Fail!');
-				}
-			});
-		});
+      <div id="box3">
+        <button>OLED화면바꾸기</button>
+        <h1 id="doorStatus">현관문 잠김</h1>
+      </div>
+    </div>
 
-	</script>
-</body>
+    <br />
+    <br />
+
+    <audio id="bellSound" src="../static/bell.mp3" preload="auto"></audio>
+    <script>
+      const socket = io();
+      socket.on("ring_bell", (data) => {
+        console.log(data.message);
+        document.getElementById("bellSound").play();
+        document.getElementById("doorStatus").innerText = "초인종 울림!!";
+      });
+
+      $("button").click(function () {
+        $.get("feed").done(function (data) {
+          if (data == "1") {
+            alert("Success!");
+          } else {
+            alert("Fail!");
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
