@@ -7,19 +7,22 @@
   </head>
   <body>
     <div id="Container">
-      <div id="box1">
-        <h1>우리집 현관문lol</h1>
-      </div>
+      <div id="box0">
+        <div id="box1">
+          <h1>YUJIN YONGSANG INTERPHONE</h1>
+          <h1>DDING - DONG</h1>
+        </div>
 
-      <div id="box2">
-        <img id="screen" src="{{ url_for('video_feed') }}" />
-        
-        <!-- <img id="screen" src="./kim.jpeg" /> -->
-      </div>
+        <div id="box2">
+          <img id="screen" src="{{ url_for('video_feed') }}" />
 
-      <div id="box3">
-        <button>OLED화면바꾸기</button>
-        <h1 id="doorStatus">현관문 잠김</h1>
+          <!-- <img id="screen" src="./kim.jpeg" /> -->
+        </div>
+
+        <div id="box3">
+          <!--<button>OLED화면바꾸기</button> -->
+          <!--<h1 id="doorStatus">현관문 잠김</h1> -->
+        </div>
       </div>
     </div>
 
@@ -33,17 +36,10 @@
         console.log(data.message);
         document.getElementById("bellSound").play();
         document.getElementById("doorStatus").innerText = "초인종 울림!!";
+        
       });
 
-      $("button").click(function () {
-        $.get("feed").done(function (data) {
-          if (data == "1") {
-            alert("Success!");
-          } else {
-            alert("Fail!");
-          }
-        });
-      });
+
     </script>
   </body>
 </html>
